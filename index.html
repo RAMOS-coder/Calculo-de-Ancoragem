@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<title>Cálculo de Ancoragem</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo"></div>
+						<div class="content">
+							<div class="inner">
+								<h1>Cálculo de Ancoragem</h1>
+								<p>Desenvolvido para agilizar o trabalho da equipe de <a>Projetos.</a><br />
+								Escolha abaixo qual o tipo de cálculo irá utilizar.</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#intro">Linear</a></li>
+								<li><a href="#work">Gpon</a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="intro">
+								<h2 class="major">Linear</h2>                               
+								<p>Cálculo de ancoragem para lançamento metro enthernet (anel).<br>
+								Insira o valor da <a>distancia</a> e o <a>lance</a> entre poste em <b>metros</b>.</p>
+								<p></p>
+                                <form id="myForm" method="post" action="/enviar-dados">
+                                    <div class="fields">
+                                        <div class="field half">
+                                            <label for="distancia">Distância: </label>
+                                            <input type="text" name="distancia" id="distanciaCabo" oninput="validarNumero(event)" autofocus required>
+                                        </div>
+                                        <div class="field half">
+                                            <label for="lance">Lance: </label>
+                                            <input type="text" name="lance" id="lancePoste" oninput="validarNumero(event)" required>
+                                        </div>
+                                        <div class="field half">
+                                            <label for="ceo">Qtd Caixa: </label>
+                                            <input type="text" name="ceo" id="quantCaixa" oninput="validarNumero(event)" required>
+                                        </div>
+                                        <div class="field half">
+                                            <label for="reserva">Qtd Reserva: </label>
+                                            <input type="text" name="reserva" id="quantReserva" oninput="validarNumero(event)" required>
+                                        </div>
+										<div class="field half">
+											<label>O projeto possui travessia?</label>
+											<input type="radio" name="opcao" id="opcao1" value="sim" onclick="liberacao()">
+											<label for="opcao1">Sim</label>
+											<input type="radio" name="opcao" id="opcao2" value="nao" checked onclick="liberacao()">
+											<label for="opcao2">Não</label>
+										</div>
+										<div class="field half"></div>
+										<div class="field half" id="camposAdicionais1" style="display: none;">
+                                            <label for="travesia">Qtd de travessia: </label>
+                                            <input type="text" name="travessia" id="quantTravessia" oninput="validarNumero(event)">
+                                        </div>
+										<div class="field half" id="camposAdicionais2" style="display: none;">
+                                            <label for="lance-travessia">Lance da travessia: </label>
+                                            <input type="text" name="lance-travessia" id="lanceTravessia" oninput="validarNumero(event)">
+                                        </div>
+                                    </div>                      
+                                    <div id="main">
+                                        <ul class="actions">
+											<li><input type="submit" value="Calcular" class="primary" /></li>
+											<li><input type="reset" value="Redefinir" /></li>
+										</ul>
+                                    </div>
+									<section id="liberarLista" style="display: none;">
+										<h3 class="major" style="margin-top: 20px;">Resultado</h3>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th style="width: 420px;">Material</th>
+														<th style="text-align: center;">Quantidade</th>
+													</tr>
+												</thead>
+												<tbody  id="lista">
+												</tbody>
+											</table>
+										</div>
+										<div style="align-content: end";>
+											<ul class="actions">
+												<li><input type="button" value="Gerar Documento" class="primary" id="download"></li>
+											</ul>
+										</div>
+
+									</section>
+                                </form>
+							</article>
+
+						<!-- GPON -->
+							<article id="work">
+								<h2 class="major">GPON</h2>
+								<!-- <span class="image main"><img src="images/pic02.jpg" alt="" /></span>-->
+								<label for="">Em construção...</label>
+								<!--<p>Cálculo de ancoragem e materiais para criação de rede GPON.<br>
+								Insira o valor da <a>distancia</a> e o <a>lance</a> entre poste em <b>metros</b>.</p>
+							
+                                <form id="myForm" onsubmit="enviarDados(event)">
+                                    <div class="fields">
+										<div class="field half">
+                                            <label for="casas">Qtd de Casas: </label>
+                                            <input autofocus type="text" name="casas" id="qdtCasas" oninput="validarNumero(event)" required>
+                                        </div>
+                                        <div class="field half">
+                                            <label for="atendimento">% de atendimento: </label>
+                                            <input autofocus type="text" name="atendimento" id="porcentAtendimento" oninput="validarNumero(event)" required>
+                                        </div>
+										<div class="field half">
+                                            <label for="distancia">Distância: </label>
+                                            <input autofocus type="text" name="distancia" id="distanciaCabo" oninput="validarNumero(event)" required>
+                                        </div>
+                                        <div class="field half">
+                                            <label for="lance">Lance: </label>
+                                            <input type="text" name="lance" id="lancePoste" oninput="validarNumero(event)" required>
+                                        </div>
+                                        <div class="field half">
+                                            <label for="ceo">Qtd Caixa: </label>
+                                            <input type="text" name="ceo" id="quantCaixa" oninput="validarNumero(event)" required>
+                                        </div>
+                                        <div class="field half">
+                                            <label for="reserva">Qtd Reserva: </label>
+                                            <input type="text" name="reserva" id="quantReserva" oninput="validarNumero(event)" required>
+                                        </div>
+										<div class="field half">
+											<label>O projeto possui travessia?</label>
+											<input type="radio" name="opcao-gpon" id="opcaoGpon1" value="sim">
+											<label for="opcaoGpon1">Sim</label>
+											<input type="radio" name="opcao-gpon" id="opcaoGpon2" value="nao" checked>
+											<label for="opcaoGpon2">Não</label>
+										</div>
+										<div class="field half"></div>
+										<div class="field half" id="camposAdicionais1" style="display: none;">
+                                            <label for="travesia">Qtd de travessia: </label>
+                                            <input type="text" name="travessia" id="quantTravessia" oninput="validarNumero(event)">
+                                        </div>
+										<div class="field half" id="camposAdicionais2" style="display: none;">
+                                            <label for="lance-travessia">Lance da travessia: </label>
+                                            <input type="text" name="lance-travessia" id="lanceTravessia" oninput="validarNumero(event)">
+                                        </div>
+                                    </div>                      
+                                    <div id="main">
+                                        <ul class="actions">
+											<li><input type="submit" value="Calcular" class="primary" /></li>
+											<li><input type="reset" value="Redefinir" /></li>
+										</ul>
+                                    </div>
+                                </form>
+							-->
+							</article>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Todos os direitos reservados. <br >Design: <a href="https://www.linkedin.com/in/deivid-ramos-4b38bb71/">Deivid Ramos</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+            <script src="assets/js/script.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
